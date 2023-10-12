@@ -2,7 +2,7 @@ package 链表;
 
 import java.util.function.Consumer;
 
-public class SimpleLinkedList {
+public class SimpleLinkedListWithSentry {
     private class Node {
         int value;
         Node next = null;
@@ -18,7 +18,7 @@ public class SimpleLinkedList {
 
     }
 
-    private Node head;
+    private Node head=new Node(114514,null);
     private int size = 0; //链表长度
 
     // 获取链表长度
@@ -33,17 +33,10 @@ public class SimpleLinkedList {
     }
 
     // 在链表尾部添加数据
-    public Node addLast(int value) {
-        if (head == null) {
-            return null;
-        }
-
-        Node p;
-        for (p = head; p.next != null; p = p.next) {
-        }
+    public void addLast(int value) {
+        Node p=get(size);
         p.next = new Node(value, null);
         size++;
-        return p;
     }
 
     // 获取第i个位置的数据
@@ -64,7 +57,7 @@ public class SimpleLinkedList {
         Node NewNode = new Node(value, null);
 
         // 获得插入节点的前一个节点
-       temp=get(index-1);
+        temp=get(index-1);
 
         if (index == 1) {
             addFrist(value);
@@ -101,24 +94,22 @@ public class SimpleLinkedList {
             p = p.next;
         }
     }
-
-    // 递归遍历
-    public void loop1(){
-
-    }
 }
-
-class Main {
+class NewMain {
     public static void main(String[] args) throws Exception {
-        SimpleLinkedList s = new SimpleLinkedList();
+        SimpleLinkedListWithSentry s = new SimpleLinkedListWithSentry();
         s.addFrist(1);
         s.addFrist(2);
         s.addFrist(3);
+
         s.insert(1, 10);
         s.insert(2, 20);
+
         s.addLast(6);
         s.addLast(5);
         s.addLast(4);
+
+        s.remove(2);
         s.remove(2);
 
         s.loop(value -> System.out.print(value + " "));
@@ -127,4 +118,3 @@ class Main {
         System.out.println(s.getSize());
     }
 }
-
